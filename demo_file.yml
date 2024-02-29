@@ -1,9 +1,3 @@
-# - name: starting nginx
-#   systemd:
-#     name: nginx
-#     state: started
-#     enabled: true
-
 - name : This is installation of web-server
   hosts: all
   tasks:
@@ -19,16 +13,18 @@
         state: latest
       when: ansible_os_family == "Debian"
 
-    - name: Start the web package
+    - name: Start the httpd web package
       systemd:
         name: httpd
         state: started
+        enabled: true
       when: ansible_os_family == "RedHat" 
  
-    - name: Start the web package
+    - name: Start the apache2 web package
       systemd:
         name: apache2
         state: started
+        enabled: true
       when: ansible_os_family == "Debian" 
  
 
