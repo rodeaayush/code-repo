@@ -1,33 +1,29 @@
-- name : This is installation of web-server
+- name: Installation and configuration of web server
   hosts: all
   tasks:
-    - name: Installation of web package
+    - name: Install web server package (RedHat)
       package:
         name: httpd
         state: present
       when: ansible_os_family == "RedHat"
 
-    - name: Installation of web package
+    - name: Install web server package (Debian)
       package:
         name: apache2
         state: present
         update_cache: yes
       when: ansible_os_family == "Debian"
 
-    - name: Start the httpd web package
+    - name: Start and enable web server service (RedHat)
       systemd:
         name: httpd
         state: started
-        enabled: true
-      when: ansible_os_family == "RedHat" 
- 
-    - name: Start the apache2 web package
+        enabled: yes
+      when: ansible_os_family == "RedHat"
+
+    - name: Start and enable web server service (Debian)
       systemd:
         name: apache2
         state: started
-        enabled: true
+        enabled: yes
       when: ansible_os_family == "Debian" 
- 
-
-
-

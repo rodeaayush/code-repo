@@ -1,9 +1,34 @@
----
-- name: Print Debug Message
+- name : This is installation of web-server
   hosts: all
   tasks:
-    - name: Display Debug Message
-      debug:
-        msg: "Hello, this is a debug message from Ansible."
+    - name: Installation of web package
+      package:
+        name: httpd
+        state: present
+      when: ansible_os_family == "RedHat"
 
-...
+    - name: Installation of web package
+      package:
+        name: apache2
+        state: present
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
+    - name: Start the httpd web package
+      systemd:
+        name: httpd
+        state: started
+        enabled: true
+      when: ansible_os_family == "RedHat" 
+ 
+    - name: Start the apache2 web package
+      systemd:
+        name: apache2
+        state: started
+        enabled: true
+      when: ansible_os_family == "Debian" 
+ 
+
+
+
+ 
