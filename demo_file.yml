@@ -1,5 +1,6 @@
 - name: Installation and configuration of web server
   hosts: all
+  become: true
   tasks:
     - name: Install web server package (RedHat)
       package:
