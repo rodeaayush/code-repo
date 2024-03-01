@@ -4,7 +4,7 @@
   vars_prompt:
     - name: my_hidden_url
       prompt: "Enter URL"
-      private: yes  # This hides the value, but can be disabled temporarily for debugging
+      private: no  # This hides the value, but can be disabled temporarily for debugging
       # no_log: true  # Comment out or remove this line to show the value in the logs temporarily
 
   tasks:
