@@ -1,0 +1,12 @@
+- name: Task that prompts for a URL
+  uri:
+    url: "{{ my_hidden_url }}"
+    method: GET
+    return_content: yes
+  vars_prompt:
+    - name: my_hidden_url
+      prompt: "Enter URL"
+      private: yes  # This hides the value, but can be disabled temporarily for debugging
+      
+      # no_log: true  # Comment out or remove this line to show the value in the logs temporarily
+
